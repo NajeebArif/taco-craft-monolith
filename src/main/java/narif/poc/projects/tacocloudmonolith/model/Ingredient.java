@@ -1,9 +1,6 @@
 package narif.poc.projects.tacocloudmonolith.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,9 +13,10 @@ import lombok.NoArgsConstructor;
 public class Ingredient {
 
     @Id
-    private String id;
-    private String name;
-    private Type type;
+    private final String id;
+    private final String name;
+    @Enumerated(EnumType.STRING)
+    private final Type type;
 
     public enum Type {
         WRAP, PROTEIN, VEGGIES, CHEESE, SAUCE
