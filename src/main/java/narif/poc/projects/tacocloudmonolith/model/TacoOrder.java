@@ -1,16 +1,29 @@
 package narif.poc.projects.tacocloudmonolith.model;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.CreditCardNumber;
 
 @Data
-public class TacoOrder {
+@Entity
+@NoArgsConstructor
+public class TacoOrder implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @NotBlank(message="Delivery name is required")
     private String deliveryName;
@@ -37,6 +50,7 @@ public class TacoOrder {
     @Digits(integer=3, fraction=0, message="Invalid CVV")
     private String ccCVV;
 
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Taco> tacos = new ArrayList<>();
 
     public void addTaco(Taco taco) {

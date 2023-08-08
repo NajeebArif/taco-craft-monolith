@@ -1,16 +1,19 @@
 package narif.poc.projects.tacocloudmonolith.web;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import narif.poc.projects.tacocloudmonolith.model.Ingredient;
 import narif.poc.projects.tacocloudmonolith.model.Ingredient.Type;
 import narif.poc.projects.tacocloudmonolith.model.Taco;
 import narif.poc.projects.tacocloudmonolith.model.TacoOrder;
+import narif.poc.projects.tacocloudmonolith.repository.IngredientRepo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,7 +21,10 @@ import java.util.List;
 @RequestMapping("/design")
 @Slf4j
 @SessionAttributes("tacoOrder")
+@RequiredArgsConstructor
 public class DesignTacoController {
+
+    private final IngredientRepo ingredientRepo;
 
     @GetMapping
     public String showDesignForm() {
@@ -56,19 +62,8 @@ public class DesignTacoController {
     }
 
 
-    private static List<Ingredient> getIngredients() {
-        return Arrays.asList(
-                new Ingredient("FLTO", "Flour Tortilla", Type.WRAP),
-                new Ingredient("COTO", "Corn Tortilla", Type.WRAP),
-                new Ingredient("GRBF", "Ground Beef", Type.PROTEIN),
-                new Ingredient("CARN", "Carnitas", Type.PROTEIN),
-                new Ingredient("TMTO", "Diced Tomatoes", Type.VEGGIES),
-                new Ingredient("LETC", "Lettuce", Type.VEGGIES),
-                new Ingredient("CHED", "Cheddar", Type.CHEESE),
-                new Ingredient("JACK", "Monterrey Jack", Type.CHEESE),
-                new Ingredient("SLSA", "Salsa", Type.SAUCE),
-                new Ingredient("SRCR", "Sour Cream", Type.SAUCE)
-        );
+    private List<Ingredient> getIngredients() {
+        return ingredientRepo.findAll();
     }
 
     private static List<Ingredient> filterByType(Type type, List<Ingredient> ingredients) {
