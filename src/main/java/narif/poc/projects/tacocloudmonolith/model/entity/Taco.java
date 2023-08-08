@@ -1,4 +1,4 @@
-package narif.poc.projects.tacocloudmonolith.model;
+package narif.poc.projects.tacocloudmonolith.model.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;

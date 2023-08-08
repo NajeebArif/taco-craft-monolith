@@ -1,7 +1,7 @@
 package narif.poc.projects.tacocloudmonolith.web;
 
 import lombok.RequiredArgsConstructor;
-import narif.poc.projects.tacocloudmonolith.model.Ingredient;
+import narif.poc.projects.tacocloudmonolith.model.entity.Ingredient;
 import narif.poc.projects.tacocloudmonolith.repository.IngredientRepo;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;

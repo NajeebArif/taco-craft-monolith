@@ -1,7 +1,7 @@
 package narif.poc.projects.tacocloudmonolith.config;
 
 import lombok.extern.slf4j.Slf4j;
-import narif.poc.projects.tacocloudmonolith.model.Ingredient;
+import narif.poc.projects.tacocloudmonolith.model.entity.Ingredient;
 import narif.poc.projects.tacocloudmonolith.repository.IngredientRepo;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;

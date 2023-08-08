@@ -3,7 +3,7 @@ package narif.poc.projects.tacocloudmonolith.web;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import narif.poc.projects.tacocloudmonolith.model.TacoOrder;
+import narif.poc.projects.tacocloudmonolith.model.entity.TacoOrder;
 import narif.poc.projects.tacocloudmonolith.repository.TacoOrderRepo;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;

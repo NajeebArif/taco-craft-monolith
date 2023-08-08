@@ -3,18 +3,16 @@ package narif.poc.projects.tacocloudmonolith.web;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import narif.poc.projects.tacocloudmonolith.model.Ingredient;
-import narif.poc.projects.tacocloudmonolith.model.Ingredient.Type;
-import narif.poc.projects.tacocloudmonolith.model.Taco;
-import narif.poc.projects.tacocloudmonolith.model.TacoOrder;
+import narif.poc.projects.tacocloudmonolith.model.entity.Ingredient;
+import narif.poc.projects.tacocloudmonolith.model.entity.Ingredient.Type;
+import narif.poc.projects.tacocloudmonolith.model.entity.Taco;
+import narif.poc.projects.tacocloudmonolith.model.entity.TacoOrder;
 import narif.poc.projects.tacocloudmonolith.repository.IngredientRepo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Controller

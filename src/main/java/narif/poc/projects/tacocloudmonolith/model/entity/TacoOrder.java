@@ -1,4 +1,4 @@
-package narif.poc.projects.tacocloudmonolith.model;
+package narif.poc.projects.tacocloudmonolith.model.entity;
 
 import java.io.Serial;
 import java.io.Serializable;
