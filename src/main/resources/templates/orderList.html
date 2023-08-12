@@ -11,12 +11,33 @@
 
 <div layout:fragment="component">
     <div class="container">
-        <ol th:each="order : ${orders}">
-            <li th:text="${order.deliveryName}">A</li>
-            <li th:text="${order.id}">A</li>
-            <li th:text="${order.placedAt}">A</li>
-            <li th:text="${order.tacoUser.fullName}">A</li>
-        </ol>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>User</th>
+                <th>Delivery Name</th>
+                <th>Delivery Address</th>
+                <th>CC Number</th>
+                <th>CC Expiration</th>
+                <th>CC CVV</th>
+                <!-- Add more table headers as needed -->
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Iterate over the list of orders and populate the table rows -->
+            <tr th:each="order : ${orders}">
+                <td th:text="${order.id}"></td>
+                <td th:text="${order.tacoUser.username}"></td>
+                <td th:text="${order.deliveryName}"></td>
+                <td th:text="${order.deliveryStreet + ', ' + order.deliveryCity + ', ' + order.deliveryState + ' ' + order.deliveryZip}"></td>
+                <td th:text="${order.ccNumber}"></td>
+                <td th:text="${order.ccExpiration}"></td>
+                <td th:text="${order.ccCVV}"></td>
+                <!-- Add more table cells as needed -->
+            </tr>
+            </tbody>
+        </table>
     </div>
 
 </div>
