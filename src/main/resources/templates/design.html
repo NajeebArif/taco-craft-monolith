@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/main}">
 <head>
     <meta charset="UTF-8">
     <title>Taco Cloud</title>
@@ -8,78 +10,80 @@
 </head>
 <body>
 
-<div th:insert="~{template :: header}"></div>
+<div layout:fragment="component">
 
-<div class="container">
+    <div class="container">
 
-    <h1>Design your Taco!</h1>
+        <h1>Design your Taco!</h1>
 
-    <form method="POST" th:object="${taco}">
-        <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
-        <span class="validationError" th:if="${#fields.hasErrors('ingredients')}"
-              th:errors="*{ingredients}">INGREDIENTS ERROR</span>
-        <div class="grid m-2">
-            <div class="ingredient-group" id="wraps">
-                <label class="fw-bold">Designate your wrap:</label>
-                <div th:each="ingredient : ${wrap}" class="form-check">
-                    <input th:field="*{ingredients}" type="checkbox"
-                           th:value="${ingredient.id}" class="form-check-input"/>
-                    <span th:text="${ingredient.name}" class="form-check-label">INGREDIENT</span>
+        <form method="POST" th:object="${taco}">
+            <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+            <span class="validationError" th:if="${#fields.hasErrors('ingredients')}"
+                  th:errors="*{ingredients}">INGREDIENTS ERROR</span>
+            <div class="grid m-2">
+                <div class="ingredient-group" id="wraps">
+                    <label class="fw-bold">Designate your wrap:</label>
+                    <div th:each="ingredient : ${wrap}" class="form-check">
+                        <input th:field="*{ingredients}" type="checkbox"
+                               th:value="${ingredient.id}" class="form-check-input"/>
+                        <span th:text="${ingredient.name}" class="form-check-label">INGREDIENT</span>
+                    </div>
                 </div>
-            </div>
 
-            <div class="ingredient-group" id="proteins">
-                <label class="fw-bold">Designate your Proteins:</label>
-                <div th:each="ingredient : ${protein}" class="form-check">
-                    <input th:field="*{ingredients}" type="checkbox" class="form-check-input" th:value="${ingredient.id}"/>
-                    <span th:text="${ingredient.name}" class="form-check-label">INGREDIENT</span>
+                <div class="ingredient-group" id="proteins">
+                    <label class="fw-bold">Designate your Proteins:</label>
+                    <div th:each="ingredient : ${protein}" class="form-check">
+                        <input th:field="*{ingredients}" type="checkbox" class="form-check-input" th:value="${ingredient.id}"/>
+                        <span th:text="${ingredient.name}" class="form-check-label">INGREDIENT</span>
+                    </div>
                 </div>
-            </div>
 
-            <div class="ingredient-group" id="cheeses">
-                <label class="fw-bold">Designate your cheeses:</label>
-                <div th:each="ingredient : ${cheese}" class="form-check">
-                    <input th:field="*{ingredients}" type="checkbox" class="form-check-input" th:value="${ingredient.id}">
-                    <span th:text="${ingredient.name}" class="form-check-label">INGREDIENT</span>
+                <div class="ingredient-group" id="cheeses">
+                    <label class="fw-bold">Designate your cheeses:</label>
+                    <div th:each="ingredient : ${cheese}" class="form-check">
+                        <input th:field="*{ingredients}" type="checkbox" class="form-check-input" th:value="${ingredient.id}">
+                        <span th:text="${ingredient.name}" class="form-check-label">INGREDIENT</span>
+                    </div>
                 </div>
-            </div>
 
-            <div class="ingredient-group" id="veggies">
-                <label class="fw-bold">Determine your veggies:</label>
-                <div th:each="ingredient : ${veggies}" class="form-check">
-                    <input th:field="*{ingredients}" type="checkbox"
-                           th:value="${ingredient.id}" class="form-check-input"/>
-                    <span th:text="${ingredient.name}" class="form-check-label">INGREDIENT</span><br/>
+                <div class="ingredient-group" id="veggies">
+                    <label class="fw-bold">Determine your veggies:</label>
+                    <div th:each="ingredient : ${veggies}" class="form-check">
+                        <input th:field="*{ingredients}" type="checkbox"
+                               th:value="${ingredient.id}" class="form-check-input"/>
+                        <span th:text="${ingredient.name}" class="form-check-label">INGREDIENT</span><br/>
+                    </div>
                 </div>
-            </div>
 
-            <div class="ingredient-group" id="sauces">
-                <label class="fw-bold">Select your sauce:</label>
-                <div th:each="ingredient : ${sauce}" class="form-check">
-                    <input th:field="*{ingredients}" type="checkbox" class="form-check-input"
-                           th:value="${ingredient.id}"/>
-                    <span th:text="${ingredient.name}" class="form-check-label">INGREDIENT</span><br/>
+                <div class="ingredient-group" id="sauces">
+                    <label class="fw-bold">Select your sauce:</label>
+                    <div th:each="ingredient : ${sauce}" class="form-check">
+                        <input th:field="*{ingredients}" type="checkbox" class="form-check-input"
+                               th:value="${ingredient.id}"/>
+                        <span th:text="${ingredient.name}" class="form-check-label">INGREDIENT</span><br/>
+                    </div>
                 </div>
-            </div>
 
-        </div>
-        <div class="row p-2" >
-            <div class="col">
-                <label class="form-label fw-bold">Name your Taco creation:</label>
-                <input type="text" th:field="*{name}" class="form-control"/>
             </div>
-            <div class="col">
+            <div class="row p-2" >
+                <div class="col">
+                    <label class="form-label fw-bold">Name your Taco creation:</label>
+                    <input type="text" th:field="*{name}" class="form-control"/>
+                </div>
+                <div class="col">
             <span class="validationError"
                   th:if="${#fields.hasErrors('name')}"
                   th:errors="*{name}">Name Error</span>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <button type="submit" class="btn btn-primary">Create your Taco</button>
+            <div class="row">
+                <div class="col">
+                    <button type="submit" class="btn btn-primary">Create your Taco</button>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
+
 </div>
 
 </body>

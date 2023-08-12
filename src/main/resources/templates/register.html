@@ -1,71 +1,76 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/main}">
 <head>
     <title>Taco Cloud</title>
 </head>
 
 <body>
-<div th:insert="~{template :: header}"></div>
-<div class="container">
+<div layout:fragment="component">
 
-    <h1>Register</h1>
 
-    <form method="POST" th:action="@{/register}" id="registerForm">
+    <div class="container">
 
-        <div class="row">
-            <div class="col">
-                <label for="username" class="form-label">Username: </label>
-                <input type="text" name="username" class="form-control"/>
-            </div>
-            <div class="col">
-                <label for="fullname" class="form-label">Full name: </label>
-                <input type="text" name="fullname" class="form-control"/>
+        <h1>Register</h1>
+
+        <form method="POST" th:action="@{/register}" id="registerForm">
+
+            <div class="row">
+                <div class="col">
+                    <label for="username" class="form-label">Username: </label>
+                    <input type="text" name="username" class="form-control"/>
+                </div>
+                <div class="col">
+                    <label for="fullname" class="form-label">Full name: </label>
+                    <input type="text" name="fullname" class="form-control"/>
+                </div>
+
             </div>
 
-        </div>
+            <div class="row">
+                <div class="col">
+                    <label for="password" class="form-label">Password: </label>
+                    <input type="password" name="password" class="form-control"/>
+                </div>
+                <div class="col">
+                    <label for="confirm" class="form-label">Confirm password: </label>
+                    <input type="password" name="confirm" class="form-control"/>
+                </div>
+            </div>
 
-        <div class="row">
-            <div class="col">
-                <label for="password" class="form-label">Password: </label>
-                <input type="password" name="password" class="form-control"/>
+            <div class="row">
+                <div class="col">
+                    <label for="street" class="form-label">Street: </label>
+                    <input type="text" name="street" class="form-control"/><br/>
+                </div>
+                <div class="col">
+                    <label for="city" class="form-label">City: </label>
+                    <input type="text" name="city" class="form-control"/><br/>
+                </div>
             </div>
-            <div class="col">
-                <label for="confirm" class="form-label">Confirm password: </label>
-                <input type="password" name="confirm" class="form-control"/>
+            <div class="row">
+                <div class="col">
+                    <label for="state" class="form-label">State: </label>
+                    <input type="text" name="state" class="form-control"/>
+                </div>
+                <div class="col">
+                    <label for="zip" class="form-label">Zip: </label>
+                    <input type="text" name="zip" class="form-control"/>
+                </div>
+                <div class="col">
+                    <label for="phone" class="form-label">Phone: </label>
+                    <input type="text" name="phone" class="form-control"/>
+                </div>
             </div>
-        </div>
-
-        <div class="row">
-            <div class="col">
-                <label for="street" class="form-label">Street: </label>
-                <input type="text" name="street" class="form-control"/><br/>
+            <div class="row mt-2">
+                <div class="col">
+                    <input type="submit" value="Register" class="btn btn-primary"/>
+                </div>
             </div>
-            <div class="col">
-                <label for="city" class="form-label">City: </label>
-                <input type="text" name="city" class="form-control"/><br/>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <label for="state" class="form-label">State: </label>
-                <input type="text" name="state" class="form-control"/>
-            </div>
-            <div class="col">
-                <label for="zip" class="form-label">Zip: </label>
-                <input type="text" name="zip" class="form-control"/>
-            </div>
-            <div class="col">
-                <label for="phone" class="form-label">Phone: </label>
-                <input type="text" name="phone" class="form-control"/>
-            </div>
-        </div>
-        <div class="row mt-2">
-            <div class="col">
-                <input type="submit" value="Register" class="btn btn-primary"/>
-            </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>
 </body>
 </html>
