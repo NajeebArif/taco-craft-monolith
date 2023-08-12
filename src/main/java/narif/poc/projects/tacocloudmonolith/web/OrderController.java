@@ -24,6 +24,11 @@ public class OrderController {
 
     private final TacoOrderRepo tacoOrderRepo;
 
+    @GetMapping
+    public String ordersPage(){
+        return "orders";
+    }
+
     @GetMapping("/current")
     public String orderForm(){
         return "orderForm";
