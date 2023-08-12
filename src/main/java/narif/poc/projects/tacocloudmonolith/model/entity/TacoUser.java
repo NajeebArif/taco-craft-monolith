@@ -33,10 +33,11 @@ public class TacoUser implements UserDetails {
     private final String state;
     private final String zip;
     private final String phoneNumber;
+    private final String role;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(() -> "ROLE_USER");
+        return List.of(() -> role);
     }
 
     @Override

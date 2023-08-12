@@ -25,6 +25,9 @@ public class TacoOrder implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    private TacoUser tacoUser;
+
     @NotBlank(message="Delivery name is required")
     private String deliveryName;
 

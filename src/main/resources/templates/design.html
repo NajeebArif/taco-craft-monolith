@@ -7,8 +7,10 @@
     <link rel="stylesheet" th:href="@{/styles.css}">
 </head>
 <body>
+
+<div th:insert="~{template :: header}"></div>
+
 <h1>Design your Taco!</h1>
-<img th:src="@{/images/TacoCloud.png}" />
 
 <form method="POST" th:action="@{/logout}">
     <input type="submit" value="Logout"/>

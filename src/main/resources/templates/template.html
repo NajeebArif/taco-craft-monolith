@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Taco Cloud</title>
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/5.3.1/css/bootstrap.min.css}" />
+    <script th:src="@{webjars/bootstrap/5.3.1/js/bootstrap.bundle.min.js}"></script>
+</head>
+<body>
+
+<div th:fragment="head">
+    <head>
+        <meta charset="UTF-8">
+        <title>Taco Cloud</title>
+        <link rel="stylesheet" th:href="@{webjars/bootstrap/5.3.1/css/bootstrap.min.css}" />
+        <script th:src="@{webjars/bootstrap/5.3.1/js/bootstrap.bundle.min.js}"></script>
+    </head>
+</div>
+
+
+<div class="container m-2" th:fragment="branding">
+    <h1>Welcome to...</h1>
+    <img class="shadow object-fit-cover border rounded" th:src="@{/images/TacoCloud.png}" />
+</div>
+
+<div class="container container-fluid m-2" th:fragment="navbar">
+    <h5 class="alert alert-primary" sec:authorize="${isAnonymous()}">Please <a th:href="@{/login}" class="btn btn-primary">Login</a> First</h5>
+    <div sec:authorize="${isFullyAuthenticated()}">
+        <form method="POST" th:action="@{/logout}">
+            <input type="submit" value="Logout" class="btn btn-secondary"/>
+        </form>
+    </div>
+</div>
+
+<div th:fragment="header" class="container m-2 p-2 flex-box flex-column">
+    <div th:insert="~{template :: head}"></div>
+    <div class="flex-row" th:insert="~{template :: branding}"></div>
+    <div class="flex-row" th:insert="~{template :: navbar}"></div>
+</div>
+
+</body>
+</html>

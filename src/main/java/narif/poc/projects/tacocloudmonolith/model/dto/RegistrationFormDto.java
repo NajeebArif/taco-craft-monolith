@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Data
 public class RegistrationFormDto {
 
+    public static final String ROLE_USER = "ROLE_USER";
     private String username;
     private String password;
     private String fullName;
@@ -18,6 +19,6 @@ public class RegistrationFormDto {
 
     public TacoUser toTacoUser(PasswordEncoder passwordEncoder) {
         return new TacoUser(username, passwordEncoder.encode(password),
-                fullName, street, city, state, zip, phone);
+                fullName, street, city, state, zip, phone, ROLE_USER);
     }
 }

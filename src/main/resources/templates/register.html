@@ -6,9 +6,8 @@
 </head>
 
 <body>
+<div th:insert="~{template :: header}"></div>
 <h1>Register</h1>
-
-<img th:src="@{/images/TacoCloud.png}"/>
 
 <form method="POST" th:action="@{/register}" id="registerForm">
 

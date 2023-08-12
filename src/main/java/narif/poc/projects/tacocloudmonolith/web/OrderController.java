@@ -4,7 +4,9 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import narif.poc.projects.tacocloudmonolith.model.entity.TacoOrder;
+import narif.poc.projects.tacocloudmonolith.model.entity.TacoUser;
 import narif.poc.projects.tacocloudmonolith.repository.TacoOrderRepo;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,10 +31,11 @@ public class OrderController {
 
     @PostMapping
     public String processOrder(@Valid TacoOrder order, Errors errors,
-                               SessionStatus sessionStatus){
+                               SessionStatus sessionStatus, @AuthenticationPrincipal TacoUser tacoUser){
         if(errors.hasErrors()){
             return "orderForm";
         }
+        order.setTacoUser(tacoUser);
         tacoOrderRepo.save(order);
         sessionStatus.setComplete();
         return "redirect:/";
