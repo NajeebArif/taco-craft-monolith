@@ -20,13 +20,17 @@
 </div>
 
 
-<div class="container m-2" th:fragment="branding">
+<div class="container m-2 d-flex flex-row" th:fragment="branding">
     <h1>Welcome to...</h1>
-    <img class="shadow object-fit-cover border rounded" th:src="@{/images/TacoCloud.png}" />
+    <img width="300" height="200"
+         class="shadow object-fit-cover border rounded"
+         th:src="@{/images/TacoCloud.png}" />
 </div>
 
-<div class="container container-fluid m-2" th:fragment="navbar">
-    <h5 class="alert alert-primary" sec:authorize="${isAnonymous()}">Please <a th:href="@{/login}" class="btn btn-primary">Login</a> First</h5>
+<div class="container d-flex m-2" th:fragment="navbar">
+    <div sec:authorize="${isAnonymous()}">
+        <a th:href="@{/login}" class="btn btn-primary">Login</a>
+    </div>
     <div sec:authorize="${isFullyAuthenticated()}">
         <form method="POST" th:action="@{/logout}">
             <input type="submit" value="Logout" class="btn btn-secondary"/>
@@ -34,10 +38,10 @@
     </div>
 </div>
 
-<div th:fragment="header" class="container m-2 p-2 flex-box flex-column">
+<div th:fragment="header" class="container m-2 p-2 d-flex flex-row">
     <div th:insert="~{template :: head}"></div>
-    <div class="flex-row" th:insert="~{template :: branding}"></div>
-    <div class="flex-row" th:insert="~{template :: navbar}"></div>
+    <div th:insert="~{template :: branding}"></div>
+    <div th:insert="~{template :: navbar}"></div>
 </div>
 
 </body>

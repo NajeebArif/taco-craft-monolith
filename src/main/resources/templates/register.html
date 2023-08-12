@@ -7,38 +7,65 @@
 
 <body>
 <div th:insert="~{template :: header}"></div>
-<h1>Register</h1>
+<div class="container">
 
-<form method="POST" th:action="@{/register}" id="registerForm">
+    <h1>Register</h1>
 
-    <label for="username">Username: </label>
-    <input type="text" name="username"/><br/>
+    <form method="POST" th:action="@{/register}" id="registerForm">
 
-    <label for="password">Password: </label>
-    <input type="password" name="password"/><br/>
+        <div class="row">
+            <div class="col">
+                <label for="username" class="form-label">Username: </label>
+                <input type="text" name="username" class="form-control"/>
+            </div>
+            <div class="col">
+                <label for="fullname" class="form-label">Full name: </label>
+                <input type="text" name="fullname" class="form-control"/>
+            </div>
 
-    <label for="confirm">Confirm password: </label>
-    <input type="password" name="confirm"/><br/>
+        </div>
 
-    <label for="fullname">Full name: </label>
-    <input type="text" name="fullname"/><br/>
+        <div class="row">
+            <div class="col">
+                <label for="password" class="form-label">Password: </label>
+                <input type="password" name="password" class="form-control"/>
+            </div>
+            <div class="col">
+                <label for="confirm" class="form-label">Confirm password: </label>
+                <input type="password" name="confirm" class="form-control"/>
+            </div>
+        </div>
 
-    <label for="street">Street: </label>
-    <input type="text" name="street"/><br/>
-
-    <label for="city">City: </label>
-    <input type="text" name="city"/><br/>
-
-    <label for="state">State: </label>
-    <input type="text" name="state"/><br/>
-
-    <label for="zip">Zip: </label>
-    <input type="text" name="zip"/><br/>
-
-    <label for="phone">Phone: </label>
-    <input type="text" name="phone"/><br/>
-
-    <input type="submit" value="Register"/>
-</form>
+        <div class="row">
+            <div class="col">
+                <label for="street" class="form-label">Street: </label>
+                <input type="text" name="street" class="form-control"/><br/>
+            </div>
+            <div class="col">
+                <label for="city" class="form-label">City: </label>
+                <input type="text" name="city" class="form-control"/><br/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="state" class="form-label">State: </label>
+                <input type="text" name="state" class="form-control"/>
+            </div>
+            <div class="col">
+                <label for="zip" class="form-label">Zip: </label>
+                <input type="text" name="zip" class="form-control"/>
+            </div>
+            <div class="col">
+                <label for="phone" class="form-label">Phone: </label>
+                <input type="text" name="phone" class="form-control"/>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col">
+                <input type="submit" value="Register" class="btn btn-primary"/>
+            </div>
+        </div>
+    </form>
+</div>
 </body>
 </html>
