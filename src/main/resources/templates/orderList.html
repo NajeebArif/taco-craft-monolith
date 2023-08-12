@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/main}" >
+<head>
+    <meta charset="UTF-8">
+    <title>Orders</title>
+</head>
+<body>
+
+<div layout:fragment="component">
+    <div class="container">
+        <ol th:each="order : ${orders}">
+            <li th:text="${order.deliveryName}">A</li>
+            <li th:text="${order.id}">A</li>
+            <li th:text="${order.placedAt}">A</li>
+            <li th:text="${order.tacoUser.fullName}">A</li>
+        </ol>
+    </div>
+
+</div>
+
+
+</body>
+</html>

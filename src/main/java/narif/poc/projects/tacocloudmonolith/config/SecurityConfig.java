@@ -23,7 +23,7 @@ public class SecurityConfig {
         httpSecurity
                 .authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
                         .requestMatchers(HttpMethod.POST, "/admin/**").hasRole("ADMIN")
-                    .requestMatchers("/design","/orders**").hasRole("USER")
+                    .requestMatchers("/design","/orders/**").hasRole("USER")
                     .requestMatchers("/","/**").permitAll()
                 )
                 .formLogin(formLogin->formLogin

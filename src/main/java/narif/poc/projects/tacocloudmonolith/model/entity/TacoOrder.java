@@ -2,6 +2,7 @@ package narif.poc.projects.tacocloudmonolith.model.entity;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -55,6 +56,8 @@ public class TacoOrder implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<Taco> tacos = new ArrayList<>();
+
+    public Instant placedAt;
 
     public void addTaco(Taco taco) {
         tacos.add(taco);
