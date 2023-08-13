@@ -23,14 +23,20 @@ public class SecurityConfig {
         httpSecurity
                 .authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
                         .requestMatchers(HttpMethod.POST, "/admin/**").hasRole("ADMIN")
-                    .requestMatchers("/design","/orders/**").hasRole("USER")
-                    .requestMatchers("/","/**").permitAll()
+                        .requestMatchers("/design", "/orders/**").hasRole("USER")
+                        .requestMatchers(HttpMethod.POST, "/data-api/ingredients").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/data-api/ingredients/**").hasRole("ADMIN")
+                        .requestMatchers("/","/webjars/**", "/images/**","*.css","*.js*", "/login", "/register").permitAll()
+                                .anyRequest().authenticated()
+//                        .requestMatchers("/api/**", "/data-api/**").authenticated()
                 )
-                .formLogin(formLogin->formLogin
+                .formLogin(formLogin -> formLogin
                         .loginPage("/login")
                         .defaultSuccessUrl("/design")
+                        .permitAll()
                 ).logout(logoutConfigurer -> logoutConfigurer
                         .logoutSuccessUrl("/")
+                        .permitAll()
                 );
         return httpSecurity.build();
     }
@@ -38,11 +44,11 @@ public class SecurityConfig {
     @Bean
     public UserDetailsService userDetailsService(TacoUserRepo tacoUserRepo) {
         return username -> tacoUserRepo.findByUsername(username)
-                .orElseThrow(()->new UsernameNotFoundException("User '"+username+"' not found"));
+                .orElseThrow(() -> new UsernameNotFoundException("User '" + username + "' not found"));
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }

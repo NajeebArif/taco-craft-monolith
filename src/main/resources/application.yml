@@ -1,6 +1,13 @@
 
+logging:
+  level:
+    org.springframework.security : debug
+    web: debug
 
 spring:
+  data:
+    rest:
+      base-path: /data-api
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:

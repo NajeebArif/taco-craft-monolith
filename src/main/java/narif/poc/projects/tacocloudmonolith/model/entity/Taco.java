@@ -5,12 +5,15 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.rest.core.annotation.RestResource;
 
+import java.time.Instant;
 import java.util.List;
 
 @Data
 @Entity
 @NoArgsConstructor
+@RestResource(rel="tacos", path="tacos")
 public class Taco {
 
     @Id
@@ -24,5 +27,12 @@ public class Taco {
     @Size(min = 1, message = "You must choose at least 1 ingredient.")
     @ManyToMany
     private List<Ingredient> ingredients;
+
+    private Instant createdAt;
+
+    @PrePersist
+    public void initDates(){
+        createdAt = Instant.now();
+    }
 
 }
