@@ -24,8 +24,10 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
                         .requestMatchers(HttpMethod.POST, "/admin/**").hasRole("ADMIN")
                         .requestMatchers("/design", "/orders/**").hasRole("USER")
-                        .requestMatchers(HttpMethod.POST, "/data-api/ingredients").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/data-api/ingredients/**").hasRole("ADMIN")
+//                        .requestMatchers(HttpMethod.POST, "/data-api/ingredients").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/data-api/ingredients").hasAnyAuthority("SCOPE_writeIngredients", "ROLE_ADMIN")
+//                        .requestMatchers(HttpMethod.DELETE, "/data-api/ingredients/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/data-api/ingredients/**").hasAnyAuthority("SCOPE_deleteIngredients", "ROLE_ADMIN")
                         .requestMatchers("/","/webjars/**", "/images/**","*.css","*.js*", "/login", "/register").permitAll()
                                 .anyRequest().authenticated()
 //                        .requestMatchers("/api/**", "/data-api/**").authenticated()
@@ -37,7 +39,7 @@ public class SecurityConfig {
                 ).logout(logoutConfigurer -> logoutConfigurer
                         .logoutSuccessUrl("/")
                         .permitAll()
-                );
+                ).oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()));
         return httpSecurity.build();
     }
 
